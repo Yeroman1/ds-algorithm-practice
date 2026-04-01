@@ -1,11 +1,12 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
-        last = {c: i for i, c in enumerate(s)}
-        r = []
-        mx = start = 0
+       
+        last = {c:i for i,c in enumerate(s)}
+        a = []
+        l = r = 0
         for i, c in enumerate(s):
-            mx = max(mx, last[c])
-            if mx == i:
-                r.append(i - start + 1)
-                start = i + 1
-        return r
+            r = max(r, last[c])
+            if i == r:
+                a.append(r - l + 1)
+                l = i + 1
+        return a
