@@ -1,11 +1,12 @@
+from collections import Counter
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         inter=[]
-        s, l = (nums1, nums2) if len(nums1) < len(nums2) else (nums2, nums1)
+        c=Counter(nums2)
 
-        for i in s:
-            if i in l:
+        for i in nums1:
+            if c[i] > 0:
                 inter.append(i)
-                l.remove(i)
+                c[i]-=1
             
         return inter
