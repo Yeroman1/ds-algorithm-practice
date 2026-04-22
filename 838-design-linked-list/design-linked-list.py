@@ -13,11 +13,8 @@ class MyLinkedList:
         for i in range(index):
             if not t:
                 return -1
-            else:
-                t=t.next
-        if not t:
-            return -1
-        return t.val
+            t=t.next
+        return t.val if t else -1
           
     def addAtHead(self, val: int) -> None:
         new_node=ListNode(val)
