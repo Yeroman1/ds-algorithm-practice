@@ -2,24 +2,26 @@ class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
         rows, cols = len(matrix), len(matrix[0])
-        self.pre = [[0]*(cols+1) for _ in range(rows+1)]
-
+        pre = [[0]*(cols+1) for _ in range(rows+1)]
+        
         for r in range(1, rows+1):
             for c in range(1, cols+1):
-                self.pre[r][c] = (
+                pre[r][c] = (
                     matrix[r-1][c-1]
-                    + self.pre[r-1][c]
-                    + self.pre[r][c-1]
-                    - self.pre[r-1][c-1]
+                    + pre[r-1][c]
+                    + pre[r][c-1]
+                    - pre[r-1][c-1]
                 )
+        self.pre=pre
         
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        pre=self.pre
         return (
-        self.pre[row2+1][col2+1]
-        - self.pre[row1][col2+1]
-        - self.pre[row2+1][col1]
-        + self.pre[row1][col1]
+        pre[row2+1][col2+1]
+        - pre[row1][col2+1]
+        - pre[row2+1][col1]
+        + pre[row1][col1]
     )
 
 # Your NumMatrix object will be instantiated and called as such:
