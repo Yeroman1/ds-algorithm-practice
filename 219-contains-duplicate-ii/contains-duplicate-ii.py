@@ -9,7 +9,7 @@ class Solution:
             
             window.add(nums[r])
             
-            if r - l >= k:
+            if r - l + 1 > k:
                 window.remove(nums[l])
                 l += 1
         
