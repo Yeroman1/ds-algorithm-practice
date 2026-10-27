@@ -1,13 +1,17 @@
 class Solution:
-    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        d={e:i for i,e in enumerate(nums1)}
-        ans=[-1]*len(nums1)
-        stack=[]
+    def nextGreaterElement(self, nums1: list[int], nums2: list[int]) -> list[int]:
+        next_greater = {}
+        stack = []
+        
+        for num in nums2:
+            while stack and stack[-1] < num:
+                smaller_num = stack.pop()
+                next_greater[smaller_num] = num
+            
+            stack.append(num)
+            
+        for num in stack:
+            next_greater[num] = -1
+            
+        return [next_greater[num] for num in nums1]
 
-        for i in nums2[::-1]:
-            while stack and stack[-1]<=i:
-                stack.pop()
-            if stack and i in d:
-                ans[d[i]]=stack[-1]
-            stack.append(i)
-        return ans
