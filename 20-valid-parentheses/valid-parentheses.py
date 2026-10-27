@@ -6,14 +6,10 @@ class Solution:
             if i in d:
                 stack.append(i)
             else:
-                if stack:
-                    if d[stack[-1]] == i:
-                        stack.pop()
-                    else:
-                        return False
-                else:
+                if not stack:
                     return False
-        if len(stack) == 0:
-            return True
-        else:
-            return False
+                top=stack.pop()
+                if d[top]!=i:
+                    return False
+                
+        return not stack
