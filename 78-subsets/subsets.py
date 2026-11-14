@@ -1,6 +1,10 @@
 class Solution:
-    def subsets(self, nums):
-        a = [[]]
-        for i in nums:
-            a += [c + [i] for c in a]
-        return a
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def recur(start, path):
+            result.append(path)
+            for i in range(start, len(nums)):
+                recur(i + 1, path + [nums[i]])
+
+        result = []
+        recur(0, [])
+        return result
